@@ -1,0 +1,175 @@
+#include<stdio.h>
+
+#include<stdlib.h>
+
+int n,a[20][20],b[20][20],i,j,s;
+
+int q[20],top=-1,front=-1,rear=-1;
+
+int visited[20];
+
+void enqueue(int);
+
+int dequeue();
+
+void bfs(int , int);
+
+int main()
+
+{
+
+    FILE * fp;
+
+    printf("\nEnter the numbrt of nodes in the graph: ");
+
+    scanf("%d",&n);
+
+    printf("\nEnter adjacency matrix to write into file: ");
+
+    fp=fopen("abc.txt","w");
+
+    for(i=0; i<n; i++)
+
+    {
+
+        for(j=0; j<n; j++)
+
+        {
+
+            scanf("%d",&b[i][j]);
+
+            fprintf(fp,"%d ",b[i][j]);
+
+        }
+
+        fprintf(fp,"\n");
+
+    }
+
+    fclose(fp);
+
+    printf("\nAdjacency matrix stored in the file :\n\n");
+
+    fp=fopen("abc.txt","r");
+
+    for(i=0; i<n; i++)
+
+    {
+
+        for(j=0; j<n; j++)
+
+        {
+
+            fscanf(fp,"%d ",&a[i][j]);
+
+            printf("%d ",a[i][j]);
+
+        }
+
+        printf("\n\n");
+
+    }
+
+    fclose(fp);
+
+    printf("\nEnter source VERTEX:");
+
+    scanf("%d",&s);
+
+    printf("\nBFS traversal of graph is : \n");
+
+    bfs(s,n);
+
+    return 0;
+
+}
+
+void bfs(int s,int n)
+
+{
+
+    int p,i;
+
+    enqueue(s);
+
+    visited[s]=1;
+
+    p=dequeue();
+
+    if(p!=0)
+
+        printf(" %d",p);
+
+    while(p!=0)
+
+    {
+
+        for(i=1; i<=n; i++)
+
+            if((a[p][i]!=0)&&(visited[i]==0))
+
+            {
+
+                enqueue(i);
+
+                visited[i]=1;
+
+            }
+
+        p=dequeue();
+
+        if(p!=0)
+
+            printf(" %d ",p);
+
+    }
+
+    for(i=1; i<=n; i++)
+
+        if(visited[i]==0)
+
+            bfs(i,n);
+
+}
+
+void enqueue(int item)
+
+{
+
+    if(rear== -1)
+
+    {
+
+        q[++rear]=item;
+
+        front++;
+
+    }
+
+    else
+
+        q[++rear]=item;
+
+}
+
+int dequeue()
+
+{
+
+    int k;
+
+    if((front>rear)||(front==-1))
+
+        return(0);
+
+    else
+
+    {
+
+        k=q[front++];
+
+        return(k);
+
+    }
+
+}
