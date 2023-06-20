@@ -1,0 +1,79 @@
+#include<stdio.h>
+
+#include<conio.h>
+
+#include<stdlib.h>
+
+typedef struct node{
+
+	int data;	node *nxt;
+
+}node;
+
+node *head=NULL;
+
+void insert(int n){
+
+	node *t=(node*)malloc(8);
+
+	t->data=n;
+
+	t->nxt=head;
+
+	head=t;
+
+}
+
+void print(){
+
+	node *t=(node*)malloc(8);
+
+	t=head;
+
+	while(t!=NULL){
+
+		printf("  %d",t->data);
+
+		t=t->nxt;
+
+	}
+
+	printf("\n");
+
+}
+
+int main()
+
+{
+
+	clrscr();
+
+	int n,i,x;
+
+	printf(" Enter no of elements: ");
+
+	scanf("%d",&n);
+
+	for(i=0;i<n;i++)
+
+	{
+
+		printf("enter element:");
+
+		scanf("%d",&x);
+
+		insert(x);
+
+		print();
+
+	}
+
+	printf(" The final linked list is:\n");
+
+	print();
+
+	getch();
+
+	return 0;
+
+}
