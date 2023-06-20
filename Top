@@ -1,0 +1,115 @@
+#include<stdio.h>
+
+#include<conio.h>
+
+struct stud
+
+{
+
+int maths;
+
+int science;
+
+int english;
+
+int hindi;
+
+int sst;
+
+int marathi;
+
+int total;
+
+int per;
+
+char name[30];
+
+}s[3];
+
+void selection(struct stud m[],int n);
+
+int main()
+
+{
+
+int i,total[5];
+
+clrscr();
+
+for(i=1;i<=3;i++)
+
+{
+
+ printf("Enter the name:");
+
+ scanf("%s",s[i].name);
+
+ printf("Enter marks for %d student for Maths:",i);
+
+ scanf("%d",&s[i].maths);
+
+ printf("Enter marks for %d student for Science:",i);
+
+ scanf("%d",&s[i].science);
+
+  printf("Enter marks for %d student for English:",i);
+
+ scanf("%d",&s[i].english);
+
+ printf("Enter marks for %d student for Hindi:",i);
+
+ scanf("%d",&s[i].hindi);
+
+ printf("Enter marks for %d student for SST:",i);
+
+ scanf("%d",&s[i].sst);
+
+ printf("Enter marks for %d student for Marathi:",i);
+
+ scanf("%d",&s[i].marathi);
+
+ s[i].total=s[i].maths+s[i].science+s[i].english+s[i].hindi+s[i].sst+s[i].marathi;
+
+ }
+
+ selection(s,3);
+
+ printf("The highest marks is:%d of student %s",s[1].total,s[1].name);
+
+  getch();
+
+ return 0;
+
+}
+
+  void selection(struct stud s[],int n)
+
+  {
+
+     int i,j;
+
+     struct stud temp;
+
+     for(i=1;i<=n;i++)
+
+     {
+
+       for(j=i+1;j<=n;j++)
+
+       {
+
+	 if(s[i].total<s[j].total)	 {
+
+	   temp=s[i];
+
+	   s[i]=s[j];
+
+	   s[j]=temp;
+
+	   }
+
+	 }
+
+       }
+
+   }
