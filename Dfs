@@ -1,0 +1,123 @@
+#include<stdio.h>
+
+#include<conio.h>
+
+int stack[20],vis[20],top=-1,a[20][20];
+
+void dfs(int s,int n);
+
+void push(int item);
+
+int pop();
+
+void main()
+
+{
+
+int n,i,j;
+
+clrscr();
+
+printf("Enter the no of vertices");
+
+scanf("%d",&n);
+
+for(i=1;i<=n;i++)
+
+{
+
+for(j=1;j<=n;j++)
+
+{
+
+printf("Enter 1 if %d has a edge with %d else 0 : ",i,j);
+
+scanf("%d",&a[i][j]);
+
+}
+
+}
+
+for(i=1;i<=n;i++)
+
+vis[i]=0;
+
+printf("\n The adjacency matrix is: \n ");
+
+for(i=1;i<=n;i++)
+
+{
+
+for(j=1;j<=n;j++)
+
+{
+
+printf(" %d",a[i][j]);
+
+}
+
+printf("\n");
+
+}
+
+dfs(1,n);
+
+getch();
+
+}
+
+void dfs(int s,int n)
+
+{
+
+	int i,k;push(s);
+
+vis[s]=1;
+
+k=pop();
+
+if(k!=0)
+
+printf("%d",k);
+
+for(i=1;i<=n;i++)
+
+{
+
+if((a[k][i]==1) && (vis[i]==0))
+
+{
+
+push(i);
+
+dfs(i,n);
+
+}
+
+}
+
+}
+
+void push(int item)
+
+{
+
+top=top+1;
+
+stack[top]=item;
+
+}
+
+int pop()
+
+{
+
+int val;
+
+val=stack[top];
+
+top=top-1;
+
+return val;
+
+}
