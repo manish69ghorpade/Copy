@@ -1,0 +1,10 @@
+#writing here to store away 
+
+vcs is a very important tool neccessary for controlling the version of software being in use now.
+
+
+to create a new git repo locally use git init 
+
+we can use versoin control locally in our system withoput requiring internet conection.
+
+
